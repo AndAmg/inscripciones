@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-05-2025 a las 02:38:31
+-- Tiempo de generación: 26-05-2025 a las 01:12:15
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -64,7 +64,9 @@ INSERT INTO `inscripciones` (`id`, `usuario_id`, `curso_id`, `fecha_inscripcion`
 (1, 1, 1, '2025-05-24 18:59:39'),
 (2, 1, 3, '2025-05-24 19:07:45'),
 (3, 1, 2, '2025-05-24 19:07:58'),
-(4, 1, 4, '2025-05-24 19:12:01');
+(4, 1, 4, '2025-05-24 19:12:01'),
+(5, 2, 2, '2025-05-25 17:15:31'),
+(6, 2, 1, '2025-05-25 18:09:36');
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `clave`) VALUES
-(1, 'Anderson', 'anderson@gmail.com', 'contra123');
+(1, 'Anderson', 'anderson@gmail.com', 'contra123'),
+(2, 'Juan', 'juan@gmail.com', 'contra456');
 
 --
 -- Índices para tablas volcadas
@@ -125,13 +128,13 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
