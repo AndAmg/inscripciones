@@ -2,32 +2,35 @@
 session_start();
 require_once("../conexion/conexion.php");
 
-$correo = trim($_POST['correo']);
-$clave = trim($_POST['clave']);
+$correo = $_POST['correo'];
+$clave = $_POST['clave'];
 
+// Buscar usuario por correo
 $sql = "SELECT id, nombre, clave FROM usuarios WHERE correo = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $correo);
 $stmt->execute();
-$result = $stmt->get_result();
+$resultado = $stmt->get_result();
 
-if ($result->num_rows === 1) {
-    $usuario = $result->fetch_assoc();
-    if ($clave === $usuario['clave']) {  // comparación plana
+if ($resultado->num_rows === 1) {
+    $usuario = $resultado->fetch_assoc();
+
+    // Verificar contraseña sin encriptar
+    if ($clave === $usuario['clave']) {
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario'] = $usuario['nombre'];
         $_SESSION['correo'] = $correo;
-        header("Location: ../vistas/inscripcion.php");
+        header("Location: ../vistas/mis_cursos.php");
         exit();
     } else {
-        $_SESSION['error_login'] = "Contraseña incorrecta.";
+        $_SESSION['mensaje'] = "Contraseña incorrecta.";
         header("Location: ../vistas/login.php");
         exit();
     }
 } else {
-    $_SESSION['error_login'] = "Usuario no registrado.";
+    $_SESSION['mensaje'] = "Usuario no encontrado.";
     header("Location: ../vistas/login.php");
     exit();
 }
-$stmt->close();
+
 $conn->close();
